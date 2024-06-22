@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --cor-primaria: #EFF5F5;
+    --cor-secundaria: #D6E4E5;
+    --cor-terciaria: #b1c4c5;
+    --cor-titulo: #497174;
+    --cor-texto: #000000;
+    --cor-destaque: #EB6440;
+    --cor-destaque-sombra: #BE4321;
+    --cor-certo: #A1DD70;
+    --cor-certo-sombra: #c2fd91;
+    --cor-errado: #EE4E4E;
+    --cor-errado-sombra: #fd6161;
+
+    --fonte: "Balsamiq Sans", sans-serif;
+}
+
+body {
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--cor-secundaria);
+    font-family: var(--fonte);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    text-decoration: underline dotted;
+}
+
+.caixa {
+    margin: 5em;
+    padding: 3em;
+    background-color: var(--cor-primaria);
+    width: 30em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1em;
+    box-shadow: 0px 3px 3px 2px var(--cor-terciaria);
+}
+
+.caixa__titulo {
+    color: var(--cor-titulo);
+    font-weight:bold;
+    text-align: end;
+}
+
+.caixa__linha {
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--cor-titulo);
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+.caixa__pergunta {
+    font-size: 32px;
+    font-weight:bold;
+    margin-bottom: 0.5em;
+}
+
+.caixa__respostas {
+    color: var(--cor-titulo);
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    gap: 1em;
+}
+
+.caixa__respostas__alt, 
+.caixa__respostas__alt-certo,
+.caixa__respostas__alt-errado {
+    background-color: var(--cor-secundaria);
+    border-radius: 0.5em;
+    margin: 0.5em 0;
+    padding: 0.7em 1em
+}
+
+.caixa__respostas__alt {
+    border: 0.15em solid var(--cor-titulo);
+    box-shadow: 0px 5px 0px var(--cor-titulo);
+}
+
+.caixa__respostas__alt:hover {
+    background-color: var(--cor-terciaria);
+}
+
+.caixa__respostas__alt:active {
+    border: 0.15em solid var(--cor-terciaria);
+    box-shadow: 0px 5px 0px var(--cor-terciaria);
+}
+
+.caixa__respostas__alt-certo {
+    border: 0.15em solid var(--cor-certo);
+    box-shadow: 0px 5px 0px var(--cor-certo);
+}
+
+.caixa__respostas__alt-errado {
+    border: 0.15em solid var(--cor-errado);
+    box-shadow: 0px 5px 0px var(--cor-errado);
+}
+
+.caixa__botao__proximo,
+.caixa__botao__proximo-desativo {
+    margin-top: 1em;
+    border-radius: 0.5em;
+    font-family: var(--fonte);
+    font-size: 24px;
+    padding: 0.3em 1em;
+}
+
+.caixa__botao__proximo {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+    border: 0.15em solid var(--cor-destaque-sombra);
+    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
+}
+
+.caixa__botao__proximo:active {
+    box-shadow: 0px 5px 0px var(--cor-destaque);
+    border: 0.15em solid var(--cor-destaque);
+}
+
+.caixa__botao__proximo-desativo {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-primaria);
+    border: 0.15em solid var(--cor-terciaria);
+    box-shadow: 0px 5px 0px var(--cor-terciaria);
+}
