@@ -3,14 +3,13 @@
 Atualizações
 
 - 21/06 Layout base;
+- 24/06 Perguntas aleatorias;
+- 24/06 Alternativas aleatorias;
 
 Em desenvolvimento
 
 - Layout do quiz;
 
 Futuramente
-
-- Perguntas aleatorias;
-- Alternativas aleatorias;
 - Acertos e erros;
-- Mostras o certo ao clicar no errado;
+- Mostrar o certo ao clicar no errado;
