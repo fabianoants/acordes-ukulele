@@ -1,17 +1,17 @@
 //Gerar pergunta aleatória/////////////////////////////////////
 let caixaPergunta = document.querySelector('.caixa__pergunta');
 let valorAleatorio = Math.floor(Math.random() * 7);
-const notaSelecionada = notasMaiores[valorAleatorio];
+let notaSelecionada = notasMaiores[valorAleatorio];
 caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
 ///////////////////////////////////////////////////////////////
-//Gerar resposta aleatória/////////////////////////////////////
+//Gerar alternativas aleatórias////////////////////////////////
 let caixaRespostas = document.querySelector(".caixa__respostas");
 let alternativas = [];
-//resposta certa//
-alternativas.push(cifrasMaiores[valorAleatorio]);
-//respostas aleatórias//
 gerarAlternativas();
 function gerarAlternativas() {
+    //alternativa certa//
+    alternativas.push(cifrasMaiores[valorAleatorio]);
+    //respostas aleatórias//
     for (let n = 0; n < 3; n++) {
         let valorGerado = Math.floor(Math.random() * 7);
         if (alternativas.includes(cifrasMaiores[valorGerado])) {
@@ -25,11 +25,14 @@ function gerarAlternativas() {
 function embaralharArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
-altEmbaralhadas = embaralharArray(alternativas);
 //inserir as alternativas//
-for (let n = 0; n < 4; n++) {
-    caixaRespostas.innerHTML += `<button onclick="verificarResposta('${altEmbaralhadas[n]}', this)" class="caixa__respostas__alt">${altEmbaralhadas[n]}</button>`
-};
+function embaralhar() {
+    let altEmbaralhadas = embaralharArray(alternativas);
+    for (let n = 0; n < 4; n++) {
+        caixaRespostas.innerHTML += `<button onclick="verificarResposta('${altEmbaralhadas[n]}', this)" class="caixa__respostas__alt">${altEmbaralhadas[n]}</button>`;
+    };
+}
+embaralhar();
 ///////////////////////////////////////////////////////////////
 //Acertar e Errar//////////////////////////////////////////////
 let caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
@@ -45,13 +48,19 @@ function verificarResposta(valor, botao) {
         botao.classList.remove('caixa__respostas__alt');
         ativarContinuar();
     }
+///////////////////////////////////////////////////////////////
+//Reiniciar////////////////////////////////////////////////////
 }
 function ativarContinuar() {
     bContinuar.classList.add('caixa__botao__proximo');
-    bContinuar.classList.remove('caixa__botao__proximo-desativo')
-    bContinuar.removeAttribute('disabled', '')
+    bContinuar.classList.remove('caixa__botao__proximo-desativo');
+    bContinuar.removeAttribute('disabled', '');
 }
-
+function desativarContinuar() {
+    bContinuar.classList.remove('caixa__botao__proximo');
+    bContinuar.classList.add('caixa__botao__proximo-desativo');
+    bContinuar.setAttribute('disabled', '');
+}
 function continuar() {
     for (let caixa = 0; caixa < caixaRespostasAlt.length; caixa++) {
         const element = caixaRespostasAlt[caixa];
@@ -59,6 +68,18 @@ function continuar() {
         element.classList.remove('caixa__respostas__alt-certo');
         element.classList.remove('caixa__respostas__alt-errado');
     }  
+    reiniciar();
+}
+function reiniciar() {
+    desativarContinuar();
+    caixaRespostas.innerHTML = "";
+    valorAleatorio = Math.floor(Math.random() * 7);
+    notaSelecionada = notasMaiores[valorAleatorio];
+    caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
+    alternativas = [];
+    gerarAlternativas(); 
+    embaralhar();
+    cifraCorreta = cifrasMaiores[valorAleatorio];
 }
 
 console.log(cifraCorreta);
