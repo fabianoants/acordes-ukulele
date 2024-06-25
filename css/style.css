@@ -9,9 +9,9 @@
     --cor-destaque: #EB6440;
     --cor-destaque-sombra: #BE4321;
     --cor-certo: #A1DD70;
-    --cor-certo-sombra: #c2fd91;
+    --cor-certo-sombra: #8dc75d;
     --cor-errado: #EE4E4E;
-    --cor-errado-sombra: #fd6161;
+    --cor-errado-sombra: #C42D2D;
 
     --fonte: "Balsamiq Sans", sans-serif;
 }
@@ -20,6 +20,7 @@ body {
     height: 100vh;
     box-sizing: border-box;
     background-color: var(--cor-secundaria);
+    background-image: linear-gradient(var(--cor-secundaria)50%, var(--cor-terciaria));
     font-family: var(--fonte);
 }
 
@@ -67,9 +68,6 @@ i {
 }
 
 .caixa__respostas {
-    color: var(--cor-titulo);
-    font-size: 24px;
-    font-weight: bold;
     display: flex;
     gap: 1em;
 }
@@ -77,6 +75,9 @@ i {
 .caixa__respostas__alt, 
 .caixa__respostas__alt-certo,
 .caixa__respostas__alt-errado {
+    color: var(--cor-titulo);
+    font-size: 24px;
+    font-weight: bold;
     background-color: var(--cor-secundaria);
     border-radius: 0.5em;
     margin: 0.5em 0;
@@ -98,13 +99,17 @@ i {
 }
 
 .caixa__respostas__alt-certo {
-    border: 0.15em solid var(--cor-certo);
-    box-shadow: 0px 5px 0px var(--cor-certo);
+    color: var(--cor-primaria);
+    background-color: var(--cor-certo);
+    border: 0.15em solid var(--cor-certo-sombra);
+    box-shadow: 0px 5px 0px var(--cor-certo-sombra);
 }
 
 .caixa__respostas__alt-errado {
-    border: 0.15em solid var(--cor-errado);
-    box-shadow: 0px 5px 0px var(--cor-errado);
+    color: var(--cor-primaria);
+    background-color: var(--cor-destaque);
+    border: 0.15em solid var(--cor-destaque-sombra);
+    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
 }
 
 .caixa__botao__proximo,
@@ -117,15 +122,15 @@ i {
 }
 
 .caixa__botao__proximo {
-    background-color: var(--cor-destaque);
+    background-color: var(--cor-certo);
     color: var(--cor-primaria);
-    border: 0.15em solid var(--cor-destaque-sombra);
-    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
+    border: 0.15em solid var(--cor-certo-sombra);
+    box-shadow: 0px 5px 0px var(--cor-certo-sombra);
 }
 
 .caixa__botao__proximo:active {
-    box-shadow: 0px 5px 0px var(--cor-destaque);
-    border: 0.15em solid var(--cor-destaque);
+    box-shadow: 0px 5px 0px var(--cor-certo);
+    border: 0.15em solid var(--cor-certo);
 }
 
 .caixa__botao__proximo-desativo {

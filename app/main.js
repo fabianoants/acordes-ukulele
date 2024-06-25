@@ -1,9 +1,8 @@
 //Gerar pergunta aleatória/////////////////////////////////////
 let caixaPergunta = document.querySelector('.caixa__pergunta');
 let valorAleatorio = Math.floor(Math.random() * 7);
-console.log(valorAleatorio);
 const notaSelecionada = notasMaiores[valorAleatorio];
-caixaPergunta.innerHTML += `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
+caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
 ///////////////////////////////////////////////////////////////
 //Gerar resposta aleatória/////////////////////////////////////
 let caixaRespostas = document.querySelector(".caixa__respostas");
@@ -29,6 +28,37 @@ function embaralharArray(array) {
 altEmbaralhadas = embaralharArray(alternativas);
 //inserir as alternativas//
 for (let n = 0; n < 4; n++) {
-    caixaRespostas.innerHTML += `<li class="caixa__respostas__alt">${altEmbaralhadas[n]}</li>`
+    caixaRespostas.innerHTML += `<button onclick="verificarResposta('${altEmbaralhadas[n]}', this)" class="caixa__respostas__alt">${altEmbaralhadas[n]}</button>`
 };
 ///////////////////////////////////////////////////////////////
+//Acertar e Errar//////////////////////////////////////////////
+let caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
+let bContinuar = document.getElementById('botao-continuar');
+cifraCorreta = cifrasMaiores[valorAleatorio];
+function verificarResposta(valor, botao) {
+    if (valor == cifraCorreta) {
+        botao.classList.add('caixa__respostas__alt-certo');
+        botao.classList.remove('caixa__respostas__alt');
+        ativarContinuar();
+    } else {
+        botao.classList.add('caixa__respostas__alt-errado');
+        botao.classList.remove('caixa__respostas__alt');
+        ativarContinuar();
+    }
+}
+function ativarContinuar() {
+    bContinuar.classList.add('caixa__botao__proximo');
+    bContinuar.classList.remove('caixa__botao__proximo-desativo')
+    bContinuar.removeAttribute('disabled', '')
+}
+
+function continuar() {
+    for (let caixa = 0; caixa < caixaRespostasAlt.length; caixa++) {
+        const element = caixaRespostasAlt[caixa];
+        element.classList.add('caixa__respostas__alt');
+        element.classList.remove('caixa__respostas__alt-certo');
+        element.classList.remove('caixa__respostas__alt-errado');
+    }  
+}
+
+console.log(cifraCorreta);

@@ -8,8 +8,11 @@ Atualizações
 
 Em desenvolvimento
 
-- Layout do quiz;
+- Acertos e erros;
+- Botão continuar;
 
 Futuramente
-- Acertos e erros;
+
+- Layout do quiz;
+- Não repetir perguntas;
 - Mostrar o certo ao clicar no errado;
