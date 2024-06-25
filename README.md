@@ -11,8 +11,10 @@ Atualizações
 Em desenvolvimento
 
 - Pontuação;
-
+- Fim das vidas;
 
 Futuramente
+
 - Layout do quiz;
 - Não repetir perguntas;
+- sequencias de acertos;

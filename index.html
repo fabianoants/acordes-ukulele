@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz | Acordes Ukulele</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="app/base.js" defer></script>
@@ -16,10 +17,15 @@
 
     <main>
         <div class="caixa">
-            <div class="caixa__titulo">Questão 1 de 10</div>
-
-            <div class="caixa__linha"></div>
-
+            <div class="caixa__sequencia">
+                <div class="caixa__sequencia__vidas">
+                    <div id="coracao"></div>
+                    <div class="caixa__sequencia__vidas__valor"></div>
+                </div>
+                <div class="caixa__sequencia__respondidas">
+                    <div class="caixa__sequencia__respondidas-ativa"></div>
+                </div>
+            </div>
             <div class="caixa__pergunta"></div>
 
             <ul class="caixa__respostas"></ul>

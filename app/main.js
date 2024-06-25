@@ -18,13 +18,13 @@ function gerarAlternativas() {
             n--;
         } else {
             alternativas.push(cifrasMaiores[valorGerado]);
-        }
+        };
     };
-}
+};
 //embaralhar as alternativas//
 function embaralharArray(array) {
     return array.sort(() => Math.random() - 0.5);
-}
+};
 //inserir as alternativas//
 function embaralhar() {
     let altEmbaralhadas = embaralharArray(alternativas);
@@ -35,6 +35,10 @@ function embaralhar() {
 embaralhar();
 ///////////////////////////////////////////////////////////////
 //Acertar e Errar//////////////////////////////////////////////
+let acertos = 0;
+let vidas = 3;
+let coracao = document.querySelector('.caixa__sequencia__vidas__valor');
+coracao.innerHTML = `${vidas}`;
 let caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
 let bContinuar = document.getElementById('botao-continuar');
 cifraCorreta = cifrasMaiores[valorAleatorio];
@@ -43,11 +47,18 @@ function verificarResposta(valor, botao) {
         botao.classList.add('caixa__respostas__alt-certo');
         ativarContinuar();
         acharResposta();
+        acertos = acertos + 2.5;
+        linhaPontuada();
     } else {
         botao.classList.add('caixa__respostas__alt-errado');
         ativarContinuar();
         acharResposta();
+        diminuirVidas();
     }
+}
+function diminuirVidas() {
+    vidas--;
+    coracao.innerHTML = `${vidas}`;
 }
 function acharResposta() {
     caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
@@ -60,7 +71,6 @@ function acharResposta() {
         achar.setAttribute('disabled', '');
     }
 }
-
 ///////////////////////////////////////////////////////////////
 //Reiniciar////////////////////////////////////////////////////
 function ativarContinuar() {
@@ -79,7 +89,7 @@ function continuar() {
         element.classList.remove('caixa__respostas__alt-certo');
         element.classList.remove('caixa__respostas__alt-errado');
         element.removeAttribute('disabled', '');
-    }  
+    } 
     reiniciar();
 }
 function reiniciar() {
@@ -94,5 +104,10 @@ function reiniciar() {
     cifraCorreta = cifrasMaiores[valorAleatorio];
     console.log(cifraCorreta);
 }
-
 console.log(cifraCorreta);
+///////////////////////////////////////////////////////////////
+//Respondidas//////////////////////////////////////////////////
+linhaResposta = document.querySelector('.caixa__sequencia__respondidas-ativa');
+function linhaPontuada() {
+    linhaResposta.style.setProperty('--acerto', acertos + 'em');
+}
