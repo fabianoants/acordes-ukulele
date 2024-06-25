@@ -41,16 +41,28 @@ cifraCorreta = cifrasMaiores[valorAleatorio];
 function verificarResposta(valor, botao) {
     if (valor == cifraCorreta) {
         botao.classList.add('caixa__respostas__alt-certo');
-        botao.classList.remove('caixa__respostas__alt');
         ativarContinuar();
+        acharResposta();
     } else {
         botao.classList.add('caixa__respostas__alt-errado');
-        botao.classList.remove('caixa__respostas__alt');
         ativarContinuar();
+        acharResposta();
     }
+}
+function acharResposta() {
+    caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
+    for (let r = 0; r < caixaRespostasAlt.length; r++) {
+        const achar = caixaRespostasAlt[r];
+        if (achar.innerText == cifraCorreta) {
+            achar.classList.add('caixa__respostas__alt-certo');
+        }
+        //desativa botoes//
+        achar.setAttribute('disabled', '');
+    }
+}
+
 ///////////////////////////////////////////////////////////////
 //Reiniciar////////////////////////////////////////////////////
-}
 function ativarContinuar() {
     bContinuar.classList.add('caixa__botao__proximo');
     bContinuar.classList.remove('caixa__botao__proximo-desativo');
@@ -64,9 +76,9 @@ function desativarContinuar() {
 function continuar() {
     for (let caixa = 0; caixa < caixaRespostasAlt.length; caixa++) {
         const element = caixaRespostasAlt[caixa];
-        element.classList.add('caixa__respostas__alt');
         element.classList.remove('caixa__respostas__alt-certo');
         element.classList.remove('caixa__respostas__alt-errado');
+        element.removeAttribute('disabled', '');
     }  
     reiniciar();
 }
@@ -80,6 +92,7 @@ function reiniciar() {
     gerarAlternativas(); 
     embaralhar();
     cifraCorreta = cifrasMaiores[valorAleatorio];
+    console.log(cifraCorreta);
 }
 
 console.log(cifraCorreta);

@@ -6,13 +6,13 @@ Atualizações
 - 24/06 Perguntas aleatorias;
 - 24/06 Alternativas aleatorias;
 - 25/06 Botão continuar;
+- 25/06 Mostrar o certo ao clicar no errado;
 
 Em desenvolvimento
 
-- Acertos e erros;
-- Mostrar o certo ao clicar no errado;
+- Pontuação;
+
 
 Futuramente
-
 - Layout do quiz;
 - Não repetir perguntas;
