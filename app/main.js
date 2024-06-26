@@ -47,7 +47,7 @@ function verificarResposta(valor, botao) {
         botao.classList.add('caixa__respostas__alt-certo');
         ativarContinuar();
         acharResposta();
-        acertos = acertos + 2.5;
+        acertos = acertos + 10;
         linhaPontuada();
     } else {
         botao.classList.add('caixa__respostas__alt-errado');
@@ -81,7 +81,7 @@ function acharResposta() {
 //Linha respondidas////////////////////////////////////////////
 let linhaResposta = document.querySelector('.caixa__sequencia__respondidas-ativa');
 function linhaPontuada() {
-    linhaResposta.style.setProperty('--acerto', acertos + 'em');
+    linhaResposta.style.setProperty('--acerto', acertos + '%');
 };
 ///////////////////////////////////////////////////////////////
 //Reiniciar////////////////////////////////////////////////////
@@ -135,6 +135,5 @@ function reiniciar() {
     embaralhar();
     cifraCorreta = cifrasMaiores[valorAleatorio];
     console.log(cifraCorreta);
-}
+};
 console.log(cifraCorreta);
-
