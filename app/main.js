@@ -51,9 +51,15 @@ function verificarResposta(valor, botao) {
         linhaPontuada();
     } else {
         botao.classList.add('caixa__respostas__alt-errado');
-        ativarContinuar();
-        acharResposta();
         diminuirVidas();
+        if(vidas == 0) {
+            acharResposta();
+            recomecar();
+
+        } else {
+            ativarContinuar();
+            acharResposta();
+        } 
     }
 }
 function diminuirVidas() {
@@ -66,13 +72,39 @@ function acharResposta() {
         const achar = caixaRespostasAlt[r];
         if (achar.innerText == cifraCorreta) {
             achar.classList.add('caixa__respostas__alt-certo');
-        }
+        };
         //desativa botoes//
         achar.setAttribute('disabled', '');
-    }
-}
+    };
+};
+///////////////////////////////////////////////////////////////
+//Linha respondidas////////////////////////////////////////////
+let linhaResposta = document.querySelector('.caixa__sequencia__respondidas-ativa');
+function linhaPontuada() {
+    linhaResposta.style.setProperty('--acerto', acertos + 'em');
+};
 ///////////////////////////////////////////////////////////////
 //Reiniciar////////////////////////////////////////////////////
+function recomecar() {
+    bContinuar.innerText = "Recomeçar";
+    bContinuar.removeAttribute('disabled', '');
+    bContinuar.classList.remove('caixa__botao__proximo-desativo');
+    bContinuar.classList.add('caixa__botao__recomecar');
+    linhaResposta.classList.add('caixa__sequencia__respondidas-desativa');
+    vidas = 3;
+    bContinuar.setAttribute('onclick', 'novoJogo()');
+}
+function novoJogo() {
+    coracao.innerHTML = `${vidas}`;
+    bContinuar.setAttribute('onclick', 'continuar()');
+    bContinuar.innerText = "Continuar";
+    bContinuar.classList.remove('caixa__botao__recomecar');
+    linhaResposta.classList.remove('caixa__sequencia__respondidas-desativa');
+    desativarContinuar();
+    reiniciar();
+    acertos = 0;
+    linhaPontuada();
+}
 function ativarContinuar() {
     bContinuar.classList.add('caixa__botao__proximo');
     bContinuar.classList.remove('caixa__botao__proximo-desativo');
@@ -91,7 +123,7 @@ function continuar() {
         element.removeAttribute('disabled', '');
     } 
     reiniciar();
-}
+};
 function reiniciar() {
     desativarContinuar();
     caixaRespostas.innerHTML = "";
@@ -105,9 +137,4 @@ function reiniciar() {
     console.log(cifraCorreta);
 }
 console.log(cifraCorreta);
-///////////////////////////////////////////////////////////////
-//Respondidas//////////////////////////////////////////////////
-linhaResposta = document.querySelector('.caixa__sequencia__respondidas-ativa');
-function linhaPontuada() {
-    linhaResposta.style.setProperty('--acerto', acertos + 'em');
-}
+

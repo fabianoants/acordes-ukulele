@@ -63,13 +63,24 @@ i {
     background-color: var(--cor-secundaria);
     margin-bottom: 2em;
     border-radius: 0.5em;
+    box-shadow: inset 0px 2px 2px 0px var(--cor-terciaria);
 }
 
-.caixa__sequencia__respondidas-ativa {
+.caixa__sequencia__respondidas-ativa,
+.caixa__sequencia__respondidas-desativa {
     width: var(--acerto);
     height: 1.2em;
     border-radius: 0.5em;
+}
+
+.caixa__sequencia__respondidas-ativa {
     background-color: var(--cor-certo);
+    box-shadow: inset 0px 2px 2px 0px var(--cor-certo-sombra);
+}
+
+.caixa__sequencia__respondidas-desativa {
+    background-color: var(--cor-destaque);
+    box-shadow: inset 0px 2px 2px 0px var(--cor-destaque-sombra);
 }
 
 .caixa__pergunta {
@@ -144,7 +155,8 @@ i {
 }
 
 .caixa__botao__proximo,
-.caixa__botao__proximo-desativo {
+.caixa__botao__proximo-desativo,
+.caixa__botao__recomecar {
     margin-top: 1em;
     border-radius: 0.5em;
     font-family: var(--fonte);
@@ -169,6 +181,18 @@ i {
     color: var(--cor-primaria);
     border: 0.15em solid var(--cor-terciaria);
     box-shadow: 0px 5px 0px var(--cor-terciaria);
+}
+
+.caixa__botao__recomecar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+    border: 0.15em solid var(--cor-destaque-sombra);
+    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
+}
+
+.caixa__botao__recomecar:active {
+    box-shadow: 0px 5px 0px var(--cor-destaque);
+    border: 0.15em solid var(--cor-destaque);
 }
 
 /* Coração */
