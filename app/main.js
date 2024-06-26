@@ -1,11 +1,14 @@
-//Gerar pergunta aleatória/////////////////////////////////////
+let caixaSequencia = document.querySelector('.caixa__sequencia');
 let caixaPergunta = document.querySelector('.caixa__pergunta');
+let caixaRespostas = document.querySelector(".caixa__respostas");
+let caixaBotao = document.querySelector(".caixa__botao");
+let final = document.querySelector('.final');
+//Gerar pergunta aleatória/////////////////////////////////////
 let valorAleatorio = Math.floor(Math.random() * 7);
 let notaSelecionada = notasMaiores[valorAleatorio];
 caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
 ///////////////////////////////////////////////////////////////
 //Gerar alternativas aleatórias////////////////////////////////
-let caixaRespostas = document.querySelector(".caixa__respostas");
 let alternativas = [];
 gerarAlternativas();
 function gerarAlternativas() {
@@ -52,7 +55,7 @@ function verificarResposta(valor, botao) {
     } else {
         botao.classList.add('caixa__respostas__alt-errado');
         diminuirVidas();
-        if(vidas == 0) {
+        if(vidas <= 0) {
             acharResposta();
             recomecar();
 
@@ -91,10 +94,10 @@ function recomecar() {
     bContinuar.classList.remove('caixa__botao__proximo-desativo');
     bContinuar.classList.add('caixa__botao__recomecar');
     linhaResposta.classList.add('caixa__sequencia__respondidas-desativa');
-    vidas = 3;
     bContinuar.setAttribute('onclick', 'novoJogo()');
 }
 function novoJogo() {
+    vidas = 3;
     coracao.innerHTML = `${vidas}`;
     bContinuar.setAttribute('onclick', 'continuar()');
     bContinuar.innerText = "Continuar";
@@ -116,14 +119,23 @@ function desativarContinuar() {
     bContinuar.setAttribute('disabled', '');
 }
 function continuar() {
+    if (acertos >= 100) {
+        concluirPartida();
+        limparBotoesCertoErrado()
+        novoJogo()
+    } else {
+        limparBotoesCertoErrado()
+        reiniciar();
+    };
+};
+function limparBotoesCertoErrado() {
     for (let caixa = 0; caixa < caixaRespostasAlt.length; caixa++) {
         const element = caixaRespostasAlt[caixa];
         element.classList.remove('caixa__respostas__alt-certo');
         element.classList.remove('caixa__respostas__alt-errado');
         element.removeAttribute('disabled', '');
     } 
-    reiniciar();
-};
+}
 function reiniciar() {
     desativarContinuar();
     caixaRespostas.innerHTML = "";
@@ -136,4 +148,18 @@ function reiniciar() {
     cifraCorreta = cifrasMaiores[valorAleatorio];
     console.log(cifraCorreta);
 };
+function concluirPartida() {
+    final.removeAttribute('hidden');
+    caixaSequencia.setAttribute('hidden','until-found');
+    caixaPergunta.setAttribute('hidden','until-found');
+    caixaRespostas.setAttribute('hidden','until-found');
+    caixaBotao.setAttribute('hidden','until-found');
+}
+function novaPartida() {
+    final.setAttribute('hidden','until-found');
+    caixaSequencia.removeAttribute('hidden');
+    caixaPergunta.removeAttribute('hidden');
+    caixaRespostas.removeAttribute('hidden');
+    caixaBotao.removeAttribute('hidden');
+}
 console.log(cifraCorreta);

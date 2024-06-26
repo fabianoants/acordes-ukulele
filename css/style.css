@@ -98,6 +98,7 @@ i {
 .caixa__respostas__alt-certo,
 .caixa__respostas__alt-errado {
     color: var(--cor-titulo);
+    font-family: var(--fonte);
     font-size: 24px;
     font-weight: bold;
     background-color: var(--cor-secundaria);
@@ -156,22 +157,26 @@ i {
 
 .caixa__botao__proximo,
 .caixa__botao__proximo-desativo,
-.caixa__botao__recomecar {
+.caixa__botao__recomecar,
+.botao__nova-partida {
     margin-top: 1em;
     border-radius: 0.5em;
     font-family: var(--fonte);
     font-size: 24px;
+    font-weight: bold;
     padding: 0.3em 1em;
 }
 
-.caixa__botao__proximo {
+.caixa__botao__proximo,
+.botao__nova-partida {
     background-color: var(--cor-certo);
     color: var(--cor-primaria);
     border: 0.15em solid var(--cor-certo-sombra);
     box-shadow: 0px 5px 0px var(--cor-certo-sombra);
 }
 
-.caixa__botao__proximo:active {
+.caixa__botao__proximo:active,
+.botao__nova-partida:active {
     box-shadow: 0px 5px 0px var(--cor-certo);
     border: 0.15em solid var(--cor-certo);
 }
@@ -195,9 +200,42 @@ i {
     border: 0.15em solid var(--cor-destaque);
 }
 
+.final,
+.final__texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.final__trofeu {
+    width: 128px;
+    height: 128px;
+    background-image: url(../img/trofeu.png);
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.final__texto__titulo {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--cor-texto);
+}
+
+.final__texto__texto {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--cor-texto);
+    text-align: center;
+}
+
 /* Coração */
-#coracao { 
+#coracao {
     position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
     width: 40px; 
     height: 32px; 
 } 

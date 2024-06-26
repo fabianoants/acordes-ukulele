@@ -32,8 +32,17 @@
             <div class="caixa__botao">
                 <button type="button" onclick="continuar()" class="caixa__botao__proximo-desativo" id="botao-continuar" disabled>Continuar</button>
             </div>
-
-            <div class="caixa__resultado"></div>
+            
+            <div class="final" hidden="until-found">
+                <div class="final__trofeu"></div>
+                <div class="final__texto">
+                    <h2 class="final__texto__titulo">Parabéns!</h2>
+                    <p class="final__texto__texto">Você terminou o quiz <br><i>Notas Maiores</i></p>
+                </div>
+                <div class="final__botao" >
+                    <button type="button" onclick="novaPartida()" class="botao__nova-partida">Nova Partida</button>
+                </div>
+            </div>
         </div>
     </main>
 
