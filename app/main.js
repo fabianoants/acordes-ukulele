@@ -5,7 +5,23 @@ let caixaRespostas = document.querySelector(".caixa__respostas");
 let caixaBotao = document.querySelector(".caixa__botao");
 let final = document.querySelector('.final');
 //Gerar pergunta aleatória/////////////////////////////////////
-let valorAleatorio = Math.floor(Math.random() * 7);
+let nNotasGeradas = [];
+function gerarNotas() {
+    let nNota = Math.floor(Math.random() * 7);
+    let quantNotasGeradas = nNotasGeradas.length;
+
+    if (quantNotasGeradas == 4) {
+        nNotasGeradas.shift();
+    }
+
+    if (nNotasGeradas.includes(nNota)) {
+        return gerarNotas();
+    } else {
+        nNotasGeradas.push(nNota);
+        return nNota;
+    }
+}
+let valorAleatorio = gerarNotas();
 let notaSelecionada = notasMaiores[valorAleatorio];
 caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
 ///////////////////////////////////////////////////////////////
@@ -45,7 +61,7 @@ let coracao = document.querySelector('.caixa__sequencia__vidas__valor');
 coracao.innerHTML = `${vidas}`;
 let caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
 let bContinuar = document.getElementById('botao-continuar');
-cifraCorreta = cifrasMaiores[valorAleatorio];
+let cifraCorreta = cifrasMaiores[valorAleatorio];
 function verificarResposta(valor, botao) {
     if (valor == cifraCorreta) {
         botao.classList.add('caixa__respostas__alt-certo');
@@ -146,7 +162,7 @@ function limparBotoesCertoErrado() {
 function reiniciar() {
     desativarContinuar();
     caixaRespostas.innerHTML = "";
-    valorAleatorio = Math.floor(Math.random() * 7);
+    valorAleatorio = gerarNotas();
     notaSelecionada = notasMaiores[valorAleatorio];
     caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
     alternativas = [];
