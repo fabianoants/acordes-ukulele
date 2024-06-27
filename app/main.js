@@ -1,3 +1,4 @@
+let caixa = document.querySelector('.caixa');
 let caixaSequencia = document.querySelector('.caixa__sequencia');
 let caixaPergunta = document.querySelector('.caixa__pergunta');
 let caixaRespostas = document.querySelector(".caixa__respostas");
@@ -48,17 +49,20 @@ cifraCorreta = cifrasMaiores[valorAleatorio];
 function verificarResposta(valor, botao) {
     if (valor == cifraCorreta) {
         botao.classList.add('caixa__respostas__alt-certo');
+        linhaResposta.classList.remove('caixa__sequencia__respondidas-desativa');
+        caixa.classList.add('caixa__verde');
         ativarContinuar();
         acharResposta();
         acertos = acertos + 10;
         linhaPontuada();
     } else {
         botao.classList.add('caixa__respostas__alt-errado');
+        caixa.classList.add('caixa__vermelha');
+        linhaResposta.classList.add('caixa__sequencia__respondidas-desativa');
         diminuirVidas();
         if(vidas <= 0) {
             acharResposta();
             recomecar();
-
         } else {
             ativarContinuar();
             acharResposta();
@@ -102,6 +106,7 @@ function novoJogo() {
     bContinuar.setAttribute('onclick', 'continuar()');
     bContinuar.innerText = "Continuar";
     bContinuar.classList.remove('caixa__botao__recomecar');
+    caixa.classList.remove('caixa__vermelha');
     linhaResposta.classList.remove('caixa__sequencia__respondidas-desativa');
     desativarContinuar();
     reiniciar();
@@ -134,7 +139,9 @@ function limparBotoesCertoErrado() {
         element.classList.remove('caixa__respostas__alt-certo');
         element.classList.remove('caixa__respostas__alt-errado');
         element.removeAttribute('disabled', '');
-    } 
+    };
+    caixa.classList.remove('caixa__verde');
+    caixa.classList.remove('caixa__vermelha');
 }
 function reiniciar() {
     desativarContinuar();
