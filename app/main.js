@@ -125,11 +125,11 @@ function desativarContinuar() {
 }
 function continuar() {
     if (acertos >= 100) {
+        limparBotoesCertoErrado();
         concluirPartida();
-        limparBotoesCertoErrado()
-        novoJogo()
+        novoJogo();
     } else {
-        limparBotoesCertoErrado()
+        limparBotoesCertoErrado();
         reiniciar();
     };
 };
@@ -161,6 +161,7 @@ function concluirPartida() {
     caixaPergunta.setAttribute('hidden','until-found');
     caixaRespostas.setAttribute('hidden','until-found');
     caixaBotao.setAttribute('hidden','until-found');
+    caixa.classList.add('caixa__verde');
 }
 function novaPartida() {
     final.setAttribute('hidden','until-found');
@@ -168,5 +169,6 @@ function novaPartida() {
     caixaPergunta.removeAttribute('hidden');
     caixaRespostas.removeAttribute('hidden');
     caixaBotao.removeAttribute('hidden');
+    caixa.classList.remove('caixa__verde');
 }
 console.log(cifraCorreta);

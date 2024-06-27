@@ -74,14 +74,12 @@ i {
     border-radius: 0.5em;
     border: 0.15em solid var(--cor-destaque-sombra);
     box-shadow: 0px 4px 0px var(--cor-destaque-sombra);
-
 }
 
 .caixa__sequencia__respondidas {
     width: 100%;
     height: 1.2em;
     background-color: var(--cor-secundaria);
-
     border-radius: 0.5em;
     box-shadow: inset 0px 3px 0px 0px var(--cor-terciaria);
 }
@@ -225,28 +223,22 @@ i {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-}
-
-.final__trofeu {
-    width: 128px;
-    height: 128px;
-    background-image: url(../img/trofeu.png);
-    background-repeat: no-repeat;
-    text-align: center;
+    margin-bottom: 1.6em;
 }
 
 .final__texto__titulo {
-    font-size: 32px;
+    font-size: 74px;
     font-weight: bold;
-    color: var(--cor-primaria);
+    color: var(--cor-texto);
+    margin-bottom: 0.3em;
 }
 
 .final__texto__texto {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
-    color: var(--cor-primaria);
+    color: var(--cor-texto);
     text-align: center;
+    margin-bottom: 0.5em;
 }
 
 /* Coração */
@@ -315,10 +307,10 @@ i {
     .caixa__respostas__alt, 
     .caixa__respostas__alt-certo,
     .caixa__respostas__alt-errado {
-    font-size: 24px;
-    border-radius: 0.5em;
-    margin: 1.5em 0;
-    padding: 0.6em 0.8em;
+        font-size: 24px;
+        border-radius: 0.5em;
+        margin: 1.5em 0;
+        padding: 0.6em 0.8em;
     }
 
     .caixa__botao {
@@ -329,12 +321,20 @@ i {
     .caixa__botao__proximo,
     .caixa__botao__proximo-desativo,
     .caixa__botao__recomecar {
-    text-align: center;
-    margin-top: 1em;
-    border-radius: 0.5em;
-    font-family: var(--fonte);
-    font-size: 24px;
-    padding: 0.6em 0.8em;
+        text-align: center;
+        margin-top: 1em;
+        border-radius: 0.5em;
+        font-family: var(--fonte);
+        font-size: 24px;
+        padding: 0.6em 0.8em;
     }
 
+    .final__texto__titulo {
+        font-size: 60px;
+        margin-bottom: 0.5em;
+    }
+
+    .final__texto__texto {
+        font-size: 27px;
+    }
 }
