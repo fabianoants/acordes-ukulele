@@ -9,11 +9,9 @@ let nNotasGeradas = [];
 function gerarNotas() {
     let nNota = Math.floor(Math.random() * 7);
     let quantNotasGeradas = nNotasGeradas.length;
-
     if (quantNotasGeradas == 4) {
         nNotasGeradas.shift();
     }
-
     if (nNotasGeradas.includes(nNota)) {
         return gerarNotas();
     } else {
@@ -51,7 +49,7 @@ function embaralhar() {
     for (let n = 0; n < 4; n++) {
         caixaRespostas.innerHTML += `<button onclick="verificarResposta('${altEmbaralhadas[n]}', this)" class="caixa__respostas__alt">${altEmbaralhadas[n]}</button>`;
     };
-}
+};
 embaralhar();
 ///////////////////////////////////////////////////////////////
 //Acertar e Errar//////////////////////////////////////////////
@@ -169,7 +167,6 @@ function reiniciar() {
     gerarAlternativas(); 
     embaralhar();
     cifraCorreta = cifrasMaiores[valorAleatorio];
-    console.log(cifraCorreta);
 };
 function concluirPartida() {
     final.removeAttribute('hidden');
@@ -178,6 +175,7 @@ function concluirPartida() {
     caixaRespostas.setAttribute('hidden','until-found');
     caixaBotao.setAttribute('hidden','until-found');
     caixa.classList.add('caixa__verde');
+    colocarFrase();
 }
 function novaPartida() {
     final.setAttribute('hidden','until-found');
@@ -186,5 +184,28 @@ function novaPartida() {
     caixaRespostas.removeAttribute('hidden');
     caixaBotao.removeAttribute('hidden');
     caixa.classList.remove('caixa__verde');
+};
+///////////////////////////////////////////////////////////////
+//Frases final de partida//////////////////////////////////////
+let finalTextoTitulo = document.querySelector('.final__texto__titulo');
+let nFrasesGeradas = [];
+function gerarFrase() {
+    let nFrase = Math.floor(Math.random() * 7);
+    let quantFrasesGeradas = nFrasesGeradas.length;
+
+    if (quantFrasesGeradas == 4) {
+        nFrasesGeradas.shift();
+    }
+
+    if (nFrasesGeradas.includes(nFrase)) {
+        return gerarFrase();
+    } else {
+        nFrasesGeradas.push(nFrase);
+        return nFrase;
+    }; 
+};
+function colocarFrase() {
+    let fraseAleatoria = gerarFrase();
+    let fraseSelecionada = frases[fraseAleatoria];
+    finalTextoTitulo.innerText = `${fraseSelecionada}`;
 }
-console.log(cifraCorreta);
