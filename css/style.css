@@ -10,6 +10,7 @@
     --cor-destaque-sombra: #BE4321;
     --cor-certo: #A1DD70;
     --cor-certo-sombra: #8dc75d;
+    --cor-certo-sombra-secundaria: #70a744;
     --fonte: "Balsamiq Sans", sans-serif;
     --acerto: 0%;
 }
@@ -18,7 +19,6 @@ body {
     height: 100vh;
     box-sizing: border-box;
     background-color: var(--cor-secundaria);
-    background-image: linear-gradient(var(--cor-secundaria)50%, var(--cor-terciaria));
     font-family: var(--fonte);
 }
 
@@ -41,7 +41,8 @@ i {
     display: flex;
     flex-direction: column;
     border-radius: 1em;
-    box-shadow: 0px 3px 3px 2px var(--cor-terciaria);
+    border: 0.3em solid var(--cor-terciaria);
+    box-shadow: 0px 10px 0px var(--cor-terciaria);
 }
 
 .caixa__sequencia {
@@ -63,7 +64,7 @@ i {
     background-color: var(--cor-secundaria);
     margin-bottom: 2em;
     border-radius: 0.5em;
-    box-shadow: inset 0px 2px 2px 0px var(--cor-terciaria);
+    box-shadow: inset 0px 3px 0px 0px var(--cor-terciaria);
 }
 
 .caixa__sequencia__respondidas-ativa,
@@ -75,12 +76,12 @@ i {
 
 .caixa__sequencia__respondidas-ativa {
     background-color: var(--cor-certo);
-    box-shadow: inset 0px 2px 2px 0px var(--cor-certo-sombra);
+    box-shadow: inset -1px -3px 0px 0px var(--cor-certo-sombra);
 }
 
 .caixa__sequencia__respondidas-desativa {
     background-color: var(--cor-destaque);
-    box-shadow: inset 0px 2px 2px 0px var(--cor-destaque-sombra);
+    box-shadow: inset -1px -3px 0px 0px var(--cor-destaque-sombra);
 }
 
 .caixa__pergunta {
@@ -219,13 +220,13 @@ i {
 .final__texto__titulo {
     font-size: 32px;
     font-weight: bold;
-    color: var(--cor-texto);
+    color: var(--cor-primaria);
 }
 
 .final__texto__texto {
     font-size: 24px;
     font-weight: bold;
-    color: var(--cor-texto);
+    color: var(--cor-primaria);
     text-align: center;
 }
 
