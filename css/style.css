@@ -1,59 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 :root {
     --cor-primaria: #EFF5F5;
     --cor-secundaria: #D6E4E5;
     --cor-terciaria: #b1c4c5;
     --cor-titulo: #497174;
     --cor-texto: #000000;
-    --cor-destaque: #EB6440;
-    --cor-destaque-sombra: #BE4321;
     --cor-certo: #A1DD70;
     --cor-certo-sombra: #8dc75d;
+    --cor-errado: #EB6440;
+    --cor-errado-sombra: #BE4321;
     --fonte: "Balsamiq Sans", sans-serif;
     --acerto: 0%;
 }
-
 body {
     height: 100vh;
     box-sizing: border-box;
     background-color: var(--cor-secundaria);
     font-family: var(--fonte);
 }
-
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 i {
     text-decoration: underline dotted;
 }
-
 .caixa {
-    margin: 5em;
-    padding: 2em 3em 3em 3em;
     background-color: var(--cor-primaria);
-    width: 30em;
     display: flex;
     flex-direction: column;
-    border-radius: 1em;
+    width: 30em;
+    margin: 5em;
+    padding: 2em 3em 3em 3em;
     border: 0.3em solid var(--cor-terciaria);
+    border-radius: 1em;
     box-shadow: 0px 10px 0px var(--cor-terciaria);
 }
-
 .caixa__verde {
     border: 0.3em solid var(--cor-certo);
     box-shadow: 0px 10px 0px var(--cor-certo);
 }
-
 .caixa__vermelha {
-    border: 0.3em solid var(--cor-destaque);
-    box-shadow: 0px 10px 0px var(--cor-destaque);
+    border: 0.3em solid var(--cor-errado);
+    box-shadow: 0px 10px 0px var(--cor-errado);
 }
-
 .caixa__sequencia {
     display: flex;
     flex-direction: row-reverse;
@@ -61,164 +53,126 @@ i {
     gap: 1em;
     margin-bottom: 1em;
 }
-
 .caixa__sequencia__vidas {
-    width: 3em;
-    background-color: var(--cor-destaque);
+    background-color: var(--cor-errado);
     color: var(--cor-primaria);
+    font-size: 24px;
+    font-weight: bold;
     display: flex;
     align-items: center;
     gap: 0.2em;
-    font-size: 24px;
-    font-weight: bold;
+    width: 3em;
     padding: 0.7em 1em;
+    border: 0.15em solid var(--cor-errado-sombra);
     border-radius: 0.5em;
-    border: 0.15em solid var(--cor-destaque-sombra);
-    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
+    box-shadow: 0px 5px 0px var(--cor-errado-sombra);
 }
-
 .caixa__sequencia__respondidas {
+    background-color: var(--cor-secundaria);
     width: 100%;
     height: 1.2em;
-    background-color: var(--cor-secundaria);
     border-radius: 0.5em;
     box-shadow: inset 0px 3px 0px 0px var(--cor-terciaria);
 }
-
 .caixa__sequencia__respondidas-ativa,
 .caixa__sequencia__respondidas-desativa {
     width: var(--acerto);
     height: 1.2em;
     border-radius: 0.5em;
 }
-
 .caixa__sequencia__respondidas-ativa {
     background-color: var(--cor-certo);
     box-shadow: inset -1px -3px 0px 0px var(--cor-certo-sombra);
 }
-
 .caixa__sequencia__respondidas-desativa {
-    background-color: var(--cor-destaque);
-    box-shadow: inset -1px -3px 0px 0px var(--cor-destaque-sombra);
+    background-color: var(--cor-errado);
+    box-shadow: inset -1px -3px 0px 0px var(--cor-errado-sombra);
 }
-
 .caixa__pergunta {
     font-size: 32px;
     font-weight:bold;
     margin-bottom: 0.5em;
 }
-
 .caixa__respostas {
     display: flex;
     gap: 1em;
 }
-
 .caixa__respostas__alt, 
 .caixa__respostas__alt-certo,
 .caixa__respostas__alt-errado {
+    background-color: var(--cor-secundaria);
     color: var(--cor-titulo);
     font-family: var(--fonte);
     font-size: 24px;
     font-weight: bold;
-    background-color: var(--cor-secundaria);
-    border-radius: 0.5em;
     margin: 0.5em 0;
-    padding: 0.7em 1em
+    padding: 0.7em 1em;
+    border-radius: 0.5em;
 }
-
 .caixa__respostas__alt {
     border: 0.15em solid var(--cor-titulo);
     box-shadow: 0px 5px 0px var(--cor-titulo);
 }
-
 .caixa__respostas__alt:hover {
     background-color: var(--cor-terciaria);
 }
-
 .caixa__respostas__alt:active {
     border: 0.15em solid var(--cor-terciaria);
     box-shadow: 0px 5px 0px var(--cor-terciaria);
 }
-
 .caixa__respostas__alt-certo {
-    color: var(--cor-primaria);
     background-color: var(--cor-certo);
+    color: var(--cor-primaria);
     border: 0.15em solid var(--cor-certo-sombra);
     box-shadow: 0px 5px 0px var(--cor-certo-sombra);
 }
-
 .caixa__respostas__alt-certo:hover {
     background-color: var(--cor-certo);
 }
-
 .caixa__respostas__alt-certo:active {
     background-color: var(--cor-certo);
     border: 0.15em solid var(--cor-certo);
     box-shadow: 0px 5px 0px var(--cor-certo);
 }
-
 .caixa__respostas__alt-errado {
+    background-color: var(--cor-errado);
     color: var(--cor-primaria);
-    background-color: var(--cor-destaque);
-    border: 0.15em solid var(--cor-destaque-sombra);
-    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
+    border: 0.15em solid var(--cor-errado-sombra);
+    box-shadow: 0px 5px 0px var(--cor-errado-sombra);
 }
-
 .caixa__respostas__alt-errado:hover {
-    background-color: var(--cor-destaque);
+    background-color: var(--cor-errado);
 }
-
 .caixa__respostas__alt-errado:active {
-    background-color: var(--cor-destaque);
-    border: 0.15em solid var(--cor-destaque);
-    box-shadow: 0px 5px 0px var(--cor-destaque);
+    background-color: var(--cor-errado);
+    border: 0.15em solid var(--cor-errado);
+    box-shadow: 0px 5px 0px var(--cor-errado);
 }
-
 .caixa__botao__proximo,
-.caixa__botao__proximo-desativo,
-.caixa__botao__recomecar,
-.botao__nova-partida {
-    margin-top: 1em;
-    border-radius: 0.5em;
+.caixa__botao__proximo-desativo {
     font-family: var(--fonte);
     font-size: 24px;
     font-weight: bold;
+    margin-top: 1em;
     padding: 0.7em 1em;
+    border-radius: 0.5em;
 }
-
-.caixa__botao__proximo,
-.botao__nova-partida {
+.caixa__botao__proximo {
     background-color: var(--cor-certo);
     color: var(--cor-primaria);
     border: 0.15em solid var(--cor-certo-sombra);
     box-shadow: 0px 5px 0px var(--cor-certo-sombra);
 }
-
-.caixa__botao__proximo:active,
-.botao__nova-partida:active {
-    box-shadow: 0px 5px 0px var(--cor-certo);
+.caixa__botao__proximo:active{
     border: 0.15em solid var(--cor-certo);
+    box-shadow: 0px 5px 0px var(--cor-certo);
 }
-
 .caixa__botao__proximo-desativo {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
     border: 0.15em solid var(--cor-terciaria);
     box-shadow: 0px 5px 0px var(--cor-terciaria);
 }
-
-.caixa__botao__recomecar {
-    background-color: var(--cor-destaque);
-    color: var(--cor-primaria);
-    border: 0.15em solid var(--cor-destaque-sombra);
-    box-shadow: 0px 5px 0px var(--cor-destaque-sombra);
-}
-
-.caixa__botao__recomecar:active {
-    box-shadow: 0px 5px 0px var(--cor-destaque);
-    border: 0.15em solid var(--cor-destaque);
-}
-
 .final,
 .final__texto {
     display: flex;
@@ -226,46 +180,37 @@ i {
     align-items: center;
     margin-bottom: 1.6em;
 }
-
 .final__texto__titulo {
+    color: var(--cor-primaria);
     font-size: 41px;
     font-weight: bold;
     text-align: center;
-    color: var(--cor-primaria);
-    
+    margin-bottom: 0.5em;
     padding: 0.7em 1em;
     border-radius: 0.3em;
-    
-    margin-bottom: 0.5em;
 }
-
 .final__texto__vitoria {
     background-color: var(--cor-certo);
     border: 0.10em solid var(--cor-certo-sombra);
     box-shadow: 0px 4px 0px var(--cor-certo-sombra);
 }
-
 .final__texto__derrota {
-    background-color: var(--cor-destaque);
-    border: 0.10em solid var(--cor-destaque-sombra);
-    box-shadow: 0px 4px 0px var(--cor-destaque-sombra);
+    background-color: var(--cor-errado);
+    border: 0.10em solid var(--cor-errado-sombra);
+    box-shadow: 0px 4px 0px var(--cor-errado-sombra);
 }
-
 .final__texto__texto {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
     font-size: 32px;
     font-weight: bold;
-    color: var(--cor-texto);
-    background-color: var(--cor-primaria);
-    padding: 0.7em 1.5em;
     text-align: center;
     margin-bottom: 0.5em;
-    border-radius: 0.3em;
+    padding: 0.7em 1.5em;
     border: 0.15em solid var(--cor-secundaria);
+    border-radius: 0.3em;
     box-shadow: 0px 5px 0px var(--cor-secundaria);
-
 }
-
-/* Coração */
 #coracao {
     position: relative; 
     display: flex;
@@ -275,7 +220,6 @@ i {
     width: 40px; 
     height: 32px; 
 } 
-
 #coracao:before, #coracao:after { 
     position: absolute; 
     content: ""; 
@@ -283,24 +227,21 @@ i {
     top: 0; 
     width: 20px; 
     height: 30px; 
-    background: var(--cor-destaque-sombra); 
+    background: var(--cor-errado-sombra); 
     border-radius: 50px 50px 0 0; 
     transform: rotate(-45deg); 
     transform-origin: 0 100%; 
 } 
-
 #coracao:after { 
     left: 0; 
     transform: rotate(45deg); 
     transform-origin :100% 100%; 
 }
-
 @media screen and (max-width: 600px) {
     .caixa {
         width: 15em;
         height: 28em;
     }
-
     .caixa__sequencia {
         display: flex;
         flex-direction: column;
@@ -308,56 +249,46 @@ i {
         align-items: end;
         gap: 1em;
     }
-
     .caixa__sequencia__vidas {
+        font-size: 21px;
         width: 2.5em;
         justify-content: center;
         align-items: center;
-        font-size: 21px;
     }
-
     .caixa__pergunta {
-        margin-top: 1em;
         font-size: 27px;
         font-weight:bold;
         text-align: center;
-        margin-bottom: 0.5em;
+        margin: 1em 0 0.5em 0;
     }
-
     .caixa__respostas {
         justify-content: center;
     }
-
     .caixa__respostas__alt, 
     .caixa__respostas__alt-certo,
     .caixa__respostas__alt-errado {
         font-size: 24px;
-        border-radius: 0.5em;
         margin: 1.5em 0;
         padding: 0.6em 0.8em;
+        border-radius: 0.5em;
     }
-
     .caixa__botao {
         display: flex;
         justify-content: center;
     }
-
     .caixa__botao__proximo,
-    .caixa__botao__proximo-desativo,
-    .caixa__botao__recomecar {
-        text-align: center;
-        margin-top: 1em;
-        border-radius: 0.5em;
+    .caixa__botao__proximo-desativo {
         font-family: var(--fonte);
         font-size: 24px;
+        text-align: center;
+        margin-top: 1em;
         padding: 0.6em 0.8em;
+        border-radius: 0.5em;
     }
-
     .final__texto__titulo {
         font-size: 36px;
         margin-bottom: 0.5em;
     }
-
     .final__texto__texto {
         font-size: 25px;
     }

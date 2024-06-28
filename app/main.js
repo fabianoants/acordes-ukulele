@@ -4,15 +4,13 @@ let caixaPergunta = document.querySelector('.caixa__pergunta');
 let caixaRespostas = document.querySelector(".caixa__respostas");
 let caixaBotao = document.querySelector(".caixa__botao");
 let final = document.querySelector('.final');
-//Gerar pergunta aleatória/////////////////////////////////////
-let nNotasGeradas = [];
-function gerarNumero(numeroArray) {
+//Gerar Pergunta///////////////////////////////////////////////
+function gerarNumero(numeroArray) {//Não repetir numeros//
     let numero = Math.floor(Math.random() * 7);
     let quantNumGeradas = numeroArray.length;
-
     if (quantNumGeradas == 4) {
         numeroArray.shift();
-    }
+    };
     if (numeroArray.includes(numero)) {
         return gerarNumero(numeroArray);
     } else {
@@ -20,17 +18,11 @@ function gerarNumero(numeroArray) {
         return numero;
     }; 
 };
-let valorAleatorio = gerarNumero(nNotasGeradas);
-let notaSelecionada = notasMaiores[valorAleatorio];
-caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
-///////////////////////////////////////////////////////////////
-//Gerar alternativas aleatórias////////////////////////////////
-let alternativas = [];
-function gerarAlternativas() {
-    //alternativa certa//
-    alternativas.push(cifrasMaiores[valorAleatorio]);
-    //respostas aleatórias//
-    for (let n = 0; n < 3; n++) {
+function gerarPergunta() {
+    caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notasMaiores[valorAleatorio]}</i>?</p>`;
+    let alternativas = [];
+    alternativas.push(cifrasMaiores[valorAleatorio]);//resposta certa//
+    for (let n = 0; n < 3; n++) {//respostas aleatórias//
         let valorGerado = Math.floor(Math.random() * 7);
         if (alternativas.includes(cifrasMaiores[valorGerado])) {
             n--;
@@ -38,31 +30,23 @@ function gerarAlternativas() {
             alternativas.push(cifrasMaiores[valorGerado]);
         };
     };
-};
-gerarAlternativas();
-//embaralhar as alternativas//
-function embaralharArray(array) {
-    return array.sort(() => Math.random() - 0.5);
-};
-//inserir as alternativas//
-function embaralhar() {
-    let altEmbaralhadas = embaralharArray(alternativas);
+    alternativas.sort(() => Math.random() - 0.5);//embaralhar respostas//
     for (let n = 0; n < 4; n++) {
-        caixaRespostas.innerHTML += `<button onclick="verificarResposta('${altEmbaralhadas[n]}', this)" class="caixa__respostas__alt">${altEmbaralhadas[n]}</button>`;
+        caixaRespostas.innerHTML += `<button onclick="verificarResposta('${alternativas[n]}', this)" class="caixa__respostas__alt">${alternativas[n]}</button>`;
     };
 };
-embaralhar();
-///////////////////////////////////////////////////////////////
+let nNotasGeradas = [];
+let valorAleatorio = gerarNumero(nNotasGeradas);
+gerarPergunta();
 //Acertar e Errar//////////////////////////////////////////////
 let acertos = 0;
 let vidas = 3;
 let coracao = document.querySelector('.caixa__sequencia__vidas__valor');
 coracao.innerHTML = `${vidas}`;
-let caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
+let caixaAlternativas = document.querySelectorAll('.caixa__respostas__alt');
 let bContinuar = document.getElementById('botao-continuar');
-let cifraCorreta = cifrasMaiores[valorAleatorio];
 function verificarResposta(valor, botao) {
-    if (valor == cifraCorreta) {
+    if (valor == cifrasMaiores[valorAleatorio]) {//certo//
         botao.classList.add('caixa__respostas__alt-certo');
         linhaResposta.classList.remove('caixa__sequencia__respondidas-desativa');
         caixa.classList.add('caixa__verde');
@@ -70,10 +54,10 @@ function verificarResposta(valor, botao) {
         acharResposta();
         acertos = acertos + 10;
         linhaPontuada();
-    } else {
+    } else {//errado//
         botao.classList.add('caixa__respostas__alt-errado');
-        caixa.classList.add('caixa__vermelha');
         linhaResposta.classList.add('caixa__sequencia__respondidas-desativa');
+        caixa.classList.add('caixa__vermelha');
         diminuirVidas();
         ativarContinuar();
         acharResposta();
@@ -84,31 +68,21 @@ function diminuirVidas() {
     coracao.innerHTML = `${vidas}`;
 };
 function acharResposta() {
-    caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
-    for (let r = 0; r < caixaRespostasAlt.length; r++) {
-        const achar = caixaRespostasAlt[r];
-        if (achar.innerText == cifraCorreta) {
-            achar.classList.add('caixa__respostas__alt-certo');
+    caixaAlternativas = document.querySelectorAll('.caixa__respostas__alt');
+    for (let r = 0; r < caixaAlternativas.length; r++) {
+        if (caixaAlternativas[r].innerText == cifrasMaiores[valorAleatorio]) {
+            caixaAlternativas[r].classList.add('caixa__respostas__alt-certo');
         };
-        //desativa botoes//
-        achar.setAttribute('disabled', '');
+        caixaAlternativas[r].setAttribute('disabled', '');//desativa botoes//
     };
 };
-///////////////////////////////////////////////////////////////
-//Linha respondidas////////////////////////////////////////////
-let linhaResposta = document.querySelector('.caixa__sequencia__respondidas-ativa');
-function linhaPontuada() {
-    linhaResposta.style.setProperty('--acerto', acertos + '%');
+function continuar() {
+    if (acertos >= 100 || vidas == 0) {
+        concluirPartida();
+    } else {
+        novaFase();
+    };
 };
-///////////////////////////////////////////////////////////////
-//Reiniciar////////////////////////////////////////////////////
-function novoJogo() {
-    vidas = 3;
-    coracao.innerHTML = `${vidas}`;
-    novaFase();
-    acertos = 0;
-    linhaPontuada();
-}
 function ativarContinuar() {
     bContinuar.classList.add('caixa__botao__proximo');
     bContinuar.classList.remove('caixa__botao__proximo-desativo');
@@ -118,35 +92,29 @@ function desativarContinuar() {
     bContinuar.classList.remove('caixa__botao__proximo');
     bContinuar.classList.add('caixa__botao__proximo-desativo');
     bContinuar.setAttribute('disabled', '');
-}
-function continuar() {
-    if (acertos >= 100 || vidas == 0) {
-        concluirPartida();
-    } else {
-        novaFase();
-    };
 };
 function limparBotoesCertoErrado() {
-    for (let caixa = 0; caixa < caixaRespostasAlt.length; caixa++) {
-        const element = caixaRespostasAlt[caixa];
+    for (let caixa = 0; caixa < caixaAlternativas.length; caixa++) {
+        const element = caixaAlternativas[caixa];
         element.classList.remove('caixa__respostas__alt-certo');
         element.classList.remove('caixa__respostas__alt-errado');
         element.removeAttribute('disabled', '');
     };
     caixa.classList.remove('caixa__verde');
     caixa.classList.remove('caixa__vermelha');
-}
+};
+//Linha de pontuação///////////////////////////////////////////
+let linhaResposta = document.querySelector('.caixa__sequencia__respondidas-ativa');
+function linhaPontuada() {
+    linhaResposta.style.setProperty('--acerto', acertos + '%');
+};
+//Reiniciar////////////////////////////////////////////////////
 function novaFase() {
     limparBotoesCertoErrado();
     desativarContinuar();
     caixaRespostas.innerHTML = "";
     valorAleatorio = gerarNumero(nNotasGeradas);
-    notaSelecionada = notasMaiores[valorAleatorio];
-    caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
-    alternativas = [];
-    gerarAlternativas(); 
-    embaralhar();
-    cifraCorreta = cifrasMaiores[valorAleatorio];
+    gerarPergunta();
 };
 function concluirPartida() {
     final.removeAttribute('hidden');
@@ -169,9 +137,12 @@ function novaPartida() {
     caixaPergunta.removeAttribute('hidden');
     caixaRespostas.removeAttribute('hidden');
     caixaBotao.removeAttribute('hidden');
-    novoJogo();
+    vidas = 3;
+    coracao.innerHTML = `${vidas}`;
+    novaFase();
+    acertos = 0;
+    linhaPontuada();
 };
-///////////////////////////////////////////////////////////////
 //Frases final de partida//////////////////////////////////////
 let finalTextoTitulo = document.querySelector('.final__texto__titulo');
 let finalTextoTexto = document.querySelector('.final__texto__texto'); 

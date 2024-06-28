@@ -15,8 +15,8 @@ Atualizações
 
 Em desenvolvimento
 
-- Sequencias de acertos;
+- Menu inicial;
 
 Futuramente
 
-
+- Sequencias de acertos;
