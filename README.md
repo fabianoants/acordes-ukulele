@@ -10,12 +10,13 @@ Atualizações
 - 26/06 Pontuação;
 - 26/06 Fim das vidas;
 - 27/06 Não repetir perguntas;
-- 27/06 Layout final de jogo
+- 27/06 Layout final de jogo;
+- 28/06 Layout fim das vidas;
 
 Em desenvolvimento
 
-- Layout fim das vidas;
+- Sequencias de acertos;
 
 Futuramente
 
-- sequencias de acertos;
+

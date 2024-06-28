@@ -232,12 +232,23 @@ i {
     font-weight: bold;
     text-align: center;
     color: var(--cor-primaria);
-    background-color: var(--cor-certo);
+    
     padding: 0.7em 1em;
     border-radius: 0.3em;
+    
+    margin-bottom: 0.5em;
+}
+
+.final__texto__vitoria {
+    background-color: var(--cor-certo);
     border: 0.10em solid var(--cor-certo-sombra);
     box-shadow: 0px 4px 0px var(--cor-certo-sombra);
-    margin-bottom: 0.5em;
+}
+
+.final__texto__derrota {
+    background-color: var(--cor-destaque);
+    border: 0.10em solid var(--cor-destaque-sombra);
+    box-shadow: 0px 4px 0px var(--cor-destaque-sombra);
 }
 
 .final__texto__texto {

@@ -24,4 +24,6 @@ const notasMenores = [nDoM.nota, nReM.nota, nMiM.nota, nFaM.nota, nSolM.nota, nL
 const cifrasMenores = [nDoM.cifra, nReM.cifra, nMiM.cifra, nFaM.cifra, nSolM.cifra, nLaM.cifra, nSiM.cifra];
 const acordesMenores = [nDoM.acorde, nReM.acorde, nMiM.acorde, nFaM.acorde, nSolM.acorde, nLaM.acorde, nSiM.acorde];
 ///////////////////////////////////////////////////////////////
-const frases = ["Hora de celebrar!", "Mandou ver!", "Show de bola!", "Valeu a pena!", "Fácil demais!", "Essa foi moleza!", "Ninguém faz igual!"];
+const frasesVitoria = ["Hora de celebrar!", "Mandou ver!", "Show de bola!", "Valeu a pena!", "Fácil demais!", "Essa foi moleza!", "Ninguém faz igual!"];
+
+const frasesDerrota = ["Missão cancelada!", "Até breve!", "Fim de jogo!", "Chegamos ao fim!", "Um adeus difícil!", "Tchau, tchau!", "Até a próxima!"];

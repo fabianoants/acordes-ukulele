@@ -6,26 +6,26 @@ let caixaBotao = document.querySelector(".caixa__botao");
 let final = document.querySelector('.final');
 //Gerar pergunta aleatória/////////////////////////////////////
 let nNotasGeradas = [];
-function gerarNotas() {
-    let nNota = Math.floor(Math.random() * 7);
-    let quantNotasGeradas = nNotasGeradas.length;
-    if (quantNotasGeradas == 4) {
-        nNotasGeradas.shift();
+function gerarNumero(numeroArray) {
+    let numero = Math.floor(Math.random() * 7);
+    let quantNumGeradas = numeroArray.length;
+
+    if (quantNumGeradas == 4) {
+        numeroArray.shift();
     }
-    if (nNotasGeradas.includes(nNota)) {
-        return gerarNotas();
+    if (numeroArray.includes(numero)) {
+        return gerarNumero(numeroArray);
     } else {
-        nNotasGeradas.push(nNota);
-        return nNota;
-    }
-}
-let valorAleatorio = gerarNotas();
+        numeroArray.push(numero);
+        return numero;
+    }; 
+};
+let valorAleatorio = gerarNumero(nNotasGeradas);
 let notaSelecionada = notasMaiores[valorAleatorio];
 caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
 ///////////////////////////////////////////////////////////////
 //Gerar alternativas aleatórias////////////////////////////////
 let alternativas = [];
-gerarAlternativas();
 function gerarAlternativas() {
     //alternativa certa//
     alternativas.push(cifrasMaiores[valorAleatorio]);
@@ -39,6 +39,7 @@ function gerarAlternativas() {
         };
     };
 };
+gerarAlternativas();
 //embaralhar as alternativas//
 function embaralharArray(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -74,19 +75,14 @@ function verificarResposta(valor, botao) {
         caixa.classList.add('caixa__vermelha');
         linhaResposta.classList.add('caixa__sequencia__respondidas-desativa');
         diminuirVidas();
-        if(vidas <= 0) {
-            acharResposta();
-            recomecar();
-        } else {
-            ativarContinuar();
-            acharResposta();
-        } 
-    }
-}
+        ativarContinuar();
+        acharResposta();
+    };
+};
 function diminuirVidas() {
     vidas--;
     coracao.innerHTML = `${vidas}`;
-}
+};
 function acharResposta() {
     caixaRespostasAlt = document.querySelectorAll('.caixa__respostas__alt');
     for (let r = 0; r < caixaRespostasAlt.length; r++) {
@@ -106,24 +102,10 @@ function linhaPontuada() {
 };
 ///////////////////////////////////////////////////////////////
 //Reiniciar////////////////////////////////////////////////////
-function recomecar() {
-    bContinuar.innerText = "Recomeçar";
-    bContinuar.removeAttribute('disabled', '');
-    bContinuar.classList.remove('caixa__botao__proximo-desativo');
-    bContinuar.classList.add('caixa__botao__recomecar');
-    linhaResposta.classList.add('caixa__sequencia__respondidas-desativa');
-    bContinuar.setAttribute('onclick', 'novoJogo()');
-}
 function novoJogo() {
     vidas = 3;
     coracao.innerHTML = `${vidas}`;
-    bContinuar.setAttribute('onclick', 'continuar()');
-    bContinuar.innerText = "Continuar";
-    bContinuar.classList.remove('caixa__botao__recomecar');
-    caixa.classList.remove('caixa__vermelha');
-    linhaResposta.classList.remove('caixa__sequencia__respondidas-desativa');
-    desativarContinuar();
-    reiniciar();
+    novaFase();
     acertos = 0;
     linhaPontuada();
 }
@@ -138,13 +120,10 @@ function desativarContinuar() {
     bContinuar.setAttribute('disabled', '');
 }
 function continuar() {
-    if (acertos >= 100) {
-        limparBotoesCertoErrado();
+    if (acertos >= 100 || vidas == 0) {
         concluirPartida();
-        novoJogo();
     } else {
-        limparBotoesCertoErrado();
-        reiniciar();
+        novaFase();
     };
 };
 function limparBotoesCertoErrado() {
@@ -157,10 +136,11 @@ function limparBotoesCertoErrado() {
     caixa.classList.remove('caixa__verde');
     caixa.classList.remove('caixa__vermelha');
 }
-function reiniciar() {
+function novaFase() {
+    limparBotoesCertoErrado();
     desativarContinuar();
     caixaRespostas.innerHTML = "";
-    valorAleatorio = gerarNotas();
+    valorAleatorio = gerarNumero(nNotasGeradas);
     notaSelecionada = notasMaiores[valorAleatorio];
     caixaPergunta.innerHTML = `<p>Qual cifra representa o acorde <i>${notaSelecionada}</i>?</p>`;
     alternativas = [];
@@ -174,38 +154,36 @@ function concluirPartida() {
     caixaPergunta.setAttribute('hidden','until-found');
     caixaRespostas.setAttribute('hidden','until-found');
     caixaBotao.setAttribute('hidden','until-found');
-    caixa.classList.add('caixa__verde');
-    colocarFrase();
-}
+    colocarFrase(frasesVitoria);
+    if (acertos >= 100) {
+        colocarFrase(frasesVitoria);
+        finalTextoTitulo.classList.add('final__texto__vitoria');
+    } else {
+        colocarFrase(frasesDerrota);
+        finalTextoTitulo.classList.add('final__texto__derrota');
+    };
+};
 function novaPartida() {
+    finalTextoTitulo.classList.remove('final__texto__vitoria', 'final__texto__derrota');
     final.setAttribute('hidden','until-found');
     caixaSequencia.removeAttribute('hidden');
     caixaPergunta.removeAttribute('hidden');
     caixaRespostas.removeAttribute('hidden');
     caixaBotao.removeAttribute('hidden');
-    caixa.classList.remove('caixa__verde');
+    novoJogo();
 };
 ///////////////////////////////////////////////////////////////
 //Frases final de partida//////////////////////////////////////
 let finalTextoTitulo = document.querySelector('.final__texto__titulo');
+let finalTextoTexto = document.querySelector('.final__texto__texto'); 
 let nFrasesGeradas = [];
-function gerarFrase() {
-    let nFrase = Math.floor(Math.random() * 7);
-    let quantFrasesGeradas = nFrasesGeradas.length;
-
-    if (quantFrasesGeradas == 4) {
-        nFrasesGeradas.shift();
-    }
-
-    if (nFrasesGeradas.includes(nFrase)) {
-        return gerarFrase();
-    } else {
-        nFrasesGeradas.push(nFrase);
-        return nFrase;
-    }; 
-};
-function colocarFrase() {
-    let fraseAleatoria = gerarFrase();
-    let fraseSelecionada = frases[fraseAleatoria];
+function colocarFrase(frase) {
+    let fraseAleatoria = gerarNumero(nFrasesGeradas);
+    let fraseSelecionada = frase[fraseAleatoria];
     finalTextoTitulo.innerText = `${fraseSelecionada}`;
-}
+    if (acertos >= 100) {
+        finalTextoTexto.innerText = "Você terminou o quiz";
+    } else {
+        finalTextoTexto.innerText = "Suas chances acabaram";
+    };
+};
