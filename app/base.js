@@ -26,4 +26,4 @@ const acordesMenores = [nDoM.acorde, nReM.acorde, nMiM.acorde, nFaM.acorde, nSol
 ///////////////////////////////////////////////////////////////
 const frasesVitoria = ["Hora de celebrar!", "Mandou ver!", "Show de bola!", "Valeu a pena!", "Fácil demais!", "Essa foi moleza!", "Ninguém faz igual!"];
 
-const frasesDerrota = ["Missão cancelada!", "Até breve!", "Fim de jogo!", "Chegamos ao fim!", "Um adeus difícil!", "Tchau, tchau!", "Até a próxima!"];
+const frasesDerrota = ["Missão cancelada!", "Até breve!", "Tudo tem limite!", "Acabou a festa!", "Talvez outro dia!", "Tchau, tchau!", "Até a próxima!"];

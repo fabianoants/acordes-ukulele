@@ -154,7 +154,6 @@ function concluirPartida() {
     caixaPergunta.setAttribute('hidden','until-found');
     caixaRespostas.setAttribute('hidden','until-found');
     caixaBotao.setAttribute('hidden','until-found');
-    colocarFrase(frasesVitoria);
     if (acertos >= 100) {
         colocarFrase(frasesVitoria);
         finalTextoTitulo.classList.add('final__texto__vitoria');
