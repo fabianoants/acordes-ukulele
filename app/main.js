@@ -117,11 +117,11 @@ function novaFase() {
     gerarPergunta();
 };
 function concluirPartida() {
-    final.removeAttribute('hidden');
-    caixaSequencia.setAttribute('hidden','until-found');
-    caixaPergunta.setAttribute('hidden','until-found');
-    caixaRespostas.setAttribute('hidden','until-found');
-    caixaBotao.setAttribute('hidden','until-found');
+    final.style.display = 'flex';
+    caixaSequencia.style.display = 'none';
+    caixaPergunta.style.display = 'none';
+    caixaRespostas.style.display = 'none';
+    caixaBotao.style.display = 'none';
     if (acertos >= 100) {
         colocarFrase(frasesVitoria);
         finalTextoTitulo.classList.add('final__texto__vitoria');
@@ -132,11 +132,11 @@ function concluirPartida() {
 };
 function novaPartida() {
     finalTextoTitulo.classList.remove('final__texto__vitoria', 'final__texto__derrota');
-    final.setAttribute('hidden','until-found');
-    caixaSequencia.removeAttribute('hidden');
-    caixaPergunta.removeAttribute('hidden');
-    caixaRespostas.removeAttribute('hidden');
-    caixaBotao.removeAttribute('hidden');
+    final.style.display = 'none';
+    caixaSequencia.style.display = 'flex';
+    caixaPergunta.style.display = 'flex';
+    caixaRespostas.style.display = 'flex';
+    caixaBotao.style.display = 'flex';
     vidas = 3;
     coracao.innerHTML = `${vidas}`;
     novaFase();

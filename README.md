@@ -12,6 +12,7 @@ Atualizações
 - 27/06 Não repetir perguntas;
 - 27/06 Layout final de jogo;
 - 28/06 Layout fim das vidas;
+- 19/09 Corrigido layout;
 
 Em desenvolvimento
 
